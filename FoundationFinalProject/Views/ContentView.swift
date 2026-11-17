@@ -5,21 +5,40 @@ struct ContentView: View {
     
     @State var estilos: [NotionEstilos] = []
     
-    
     let bearerToken = ProcessInfo.processInfo.environment["BEARER_TOKEN"]!
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+       
+        ScrollView {
+                Text("Estilos")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
+            LazyVGrid(columns: [
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ], spacing: 16) {
+                ForEach(estilos) { estilo in
+                    NavigationLink {
+                    } label: {
+                        EstiloRowView(estilo: estilo)
+                    }
+                    .buttonStyle(.automatic)
+                }
+            }
+            .padding()
         }
-        .padding()
         .task {
-            let client = NotionClient(
-                bearerToken: bearerToken
-            )
+            do {
+                let client = NotionClient(
+                    bearerToken: bearerToken
+                )
+                self.estilos = try await client.fetchPages(ofType: NotionEstilos.self)
+            } catch {
+                print(error)
+            }
+            
         }
     }
 }
