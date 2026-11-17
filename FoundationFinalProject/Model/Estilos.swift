@@ -11,6 +11,8 @@ import Notion
 @NotionPage
 struct NotionEstilos: Identifiable{
     @NotionTitleProperty("Nome do Estilo") var nome: String
+    @NotionProperty("Descrição") var descricao: String
     @NotionProperty("Referência") var referencia: URL?
     @NotionRelationProperty("Peças do estilo") var pecas: [NotionPecas]
+    
 }

@@ -3,6 +3,9 @@ import Notion
 
 struct ContentView: View {
     
+    @State var estilos: [NotionEstilos] = []
+    
+    
     let bearerToken = ProcessInfo.processInfo.environment["BEARER_TOKEN"]!
     
     var body: some View {
