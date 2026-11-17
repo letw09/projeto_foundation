@@ -8,11 +8,18 @@
 import SwiftUI
 import Notion
 
-@NotionPage
+@NotionPage("Estilos")
 struct NotionEstilos: Identifiable{
     @NotionTitleProperty("Nome do Estilo") var nome: String
     @NotionProperty("Descrição") var descricao: String
-    @NotionProperty("Referência") var referencia: URL?
-    @NotionRelationProperty("Peças do estilo") var pecas: [NotionPecas]
+    @NotionProperty("Referencia") var referencia: URL?
+    @NotionRelationProperty("Peça") var pecas: [NotionPecas]
     
+}
+struct Estilos: Identifiable {
+    let id = UUID()
+    let nome: String
+    let descricao: String
+    let referencia: ImageResource
+    let pecas: [NotionPecas]
 }

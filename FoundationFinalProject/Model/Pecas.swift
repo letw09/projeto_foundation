@@ -9,8 +9,8 @@ import Notion
 
 @NotionPage
 struct NotionPecas: Identifiable {
-    @NotionTitleProperty("Nome da Peça") var nomePecas: String
-    @NotionProperty("Imagem da Peça") var imagePecas: URL?
+    @NotionTitleProperty("Nome") var nomePecas: String
+    @NotionProperty("Imagem") var imagePecas: URL?
     @NotionProperty("Tipo") var tipo: Tipo?
 }
 
