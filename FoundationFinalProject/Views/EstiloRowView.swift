@@ -1,4 +1,5 @@
 import SwiftUI
+import Notion
 
 struct EstiloRowView: View {
     let estilo: NotionEstilos
@@ -9,10 +10,9 @@ struct EstiloRowView: View {
                 .font(.footnote)
                 .fontWeight(.regular)
                 
+                
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 12))
                 }
                     
                 }

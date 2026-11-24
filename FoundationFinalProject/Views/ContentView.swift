@@ -9,36 +9,40 @@ struct ContentView: View {
     
     var body: some View {
        
-        ScrollView {
+        NavigationStack {
+            ScrollView {
+                Text(" ")
                 Text("Estilos")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal)
-            LazyVGrid(columns: [
-                GridItem(.flexible()),
-                GridItem(.flexible())
-            ], spacing: 16) {
-                ForEach(estilos) { estilo in
-                    NavigationLink {
-                    } label: {
-                        EstiloRowView(estilo: estilo)
+                LazyVGrid(columns: [
+                    GridItem(.flexible()),
+                    GridItem(.flexible())
+                ], spacing: 16) {
+                    ForEach(estilos) { estilo in
+                        NavigationLink {
+                            EstiloDetailView(estilo: estilo)
+                        } label: {
+                            EstiloRowView(estilo: estilo)
+                        }
+                        .buttonStyle(.automatic)
                     }
-                    .buttonStyle(.automatic)
                 }
+                .padding()
             }
-            .padding()
-        }
-        .task {
-            do {
-                let client = NotionClient(
-                    bearerToken: bearerToken
-                )
-                self.estilos = try await client.fetchPages(ofType: NotionEstilos.self)
-            } catch {
-                print(error)
+            .task {
+                do {
+                    let client = NotionClient(
+                        bearerToken: bearerToken
+                    )
+                    self.estilos = try await client.fetchPages(ofType: NotionEstilos.self)
+                } catch {
+                    print(error)
+                }
+                
             }
-            
         }
     }
 }
