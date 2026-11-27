@@ -25,7 +25,12 @@ struct EstiloDetailView: View {
                     GridItem(.flexible())
                 ], spacing: 16) {
                     ForEach(imagens, id: \.self) { url in
-                        ImagemPecaCard(url: url)
+                        NavigationLink {
+                            PecaImagemView(url: url)
+                        } label: {
+                            ImagemPecaCard(url: url)
+                        }
+                        .buttonStyle(.automatic)
                     }
                 }
                 .padding()

@@ -8,6 +8,7 @@ struct ContentView: View {
     let bearerToken = ProcessInfo.processInfo.environment["BEARER_TOKEN"]!
     
     var body: some View {
+        
        
         NavigationStack {
             ScrollView {
